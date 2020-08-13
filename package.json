@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/gunnmgirl/twitter-clone-server#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "express-validator": "^6.6.1",
     "mongoose": "^5.9.27",
     "nodemon": "^2.0.4"
   }
