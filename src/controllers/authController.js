@@ -33,13 +33,13 @@ async function login(req, res, next) {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
       const error = new Error("A user with this email could not be found!");
-      error.statusCode = 401;
+      error.statusCode = 400;
       throw error;
     }
     const isEqual = await bcrypt.compare(req.body.password, user.password);
     if (!isEqual) {
       const error = new Error("You entered a wrong password!");
-      error.statusCode = 401;
+      error.statusCode = 400;
       throw error;
     }
     const token = jwt.sign(

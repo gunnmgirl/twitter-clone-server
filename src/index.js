@@ -22,7 +22,7 @@ app.use("/auth", authRoutes);
 
 app.use((error, req, res, next) => {
   console.log("In error middleware ", error);
-  res.status(error.statusCode).send(error.data);
+  res.status(error.statusCode).send(error.message);
 });
 
 mongoose
