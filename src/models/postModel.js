@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
-  /*creator: {
+  creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
-  },*/
+  },
   content: {
     type: String,
     required: true,
