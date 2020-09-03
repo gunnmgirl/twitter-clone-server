@@ -2,7 +2,7 @@ import { validationResult } from "express-validator/check";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import User from "../Models/userModel";
+import User from "../models/userModel";
 
 async function signup(req, res, next) {
   const errors = validationResult(req);
@@ -45,7 +45,7 @@ async function login(req, res, next) {
     const token = jwt.sign(
       { email: user.email, userId: user._id.toString() },
       process.env.SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "2 days" }
     );
     res.status(200).send({ token, userId: user._id.toString() });
   } catch (error) {

@@ -1,7 +1,7 @@
 import express from "express";
 import { body } from "express-validator/check";
 
-import User from "../Models/userModel";
+import User from "../models/userModel";
 import authController from "../controllers/authController";
 import isAuth from "../middleware/isAuth";
 
@@ -39,6 +39,6 @@ router.put(
   authController.signup
 );
 
-router.post("/login", isAuth, authController.login);
+router.post("/login", authController.login);
 
 export default router;
