@@ -18,6 +18,25 @@ async function createPost(req, res, next) {
   }
 }
 
+async function deletePost(req, res, next) {
+  const { postId } = req.body;
+  try {
+    const post = await Post.findById(postId);
+    if (post.creator.toString() !== req.userId) {
+      const error = new Error("Not authorized!");
+      error.statusCode = 401;
+      throw error;
+    }
+    await Post.findByIdAndDelete(postId);
+    const user = await User.findById(req.userId);
+    user.posts.pull(postId);
+    await user.save();
+    res.status(200).send(post);
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+}
+
 async function getPosts(req, res, next) {
   try {
     const posts = await Post.find();
@@ -27,4 +46,4 @@ async function getPosts(req, res, next) {
   }
 }
 
-export default { createPost, getPosts };
+export default { createPost, getPosts, deletePost };

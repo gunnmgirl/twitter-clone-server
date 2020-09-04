@@ -8,5 +8,6 @@ const router = express.Router();
 
 router.put("/create", isAuth, postController.createPost);
 router.get("/", isAuth, postController.getPosts);
+router.post("/delete", isAuth, postController.deletePost);
 
 export default router;
