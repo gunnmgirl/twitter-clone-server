@@ -18,6 +18,20 @@ async function createPost(req, res, next) {
   }
 }
 
+async function editPost(req, res, next) {
+  const { postId, newContent } = req.body;
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(
+      postId,
+      { content: newContent },
+      { new: true }
+    );
+    return res.status(200).send(updatedPost);
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+}
+
 async function deletePost(req, res, next) {
   const { postId } = req.body;
   try {
@@ -46,4 +60,4 @@ async function getPosts(req, res, next) {
   }
 }
 
-export default { createPost, getPosts, deletePost };
+export default { createPost, getPosts, deletePost, editPost };

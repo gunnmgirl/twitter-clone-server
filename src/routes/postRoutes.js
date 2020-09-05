@@ -9,5 +9,6 @@ const router = express.Router();
 router.put("/create", isAuth, postController.createPost);
 router.get("/", isAuth, postController.getPosts);
 router.post("/delete", isAuth, postController.deletePost);
+router.post("/edit", isAuth, postController.editPost);
 
 export default router;
