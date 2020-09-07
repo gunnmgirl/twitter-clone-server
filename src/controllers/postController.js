@@ -21,6 +21,12 @@ async function createPost(req, res, next) {
 async function editPost(req, res, next) {
   const { postId, newContent } = req.body;
   try {
+    const post = await Post.findById(postId);
+    if (post.creator.toString() !== req.userId) {
+      const error = new Error("Not authorized!");
+      error.statusCode = 401;
+      throw error;
+    }
     const updatedPost = await Post.findByIdAndUpdate(
       postId,
       { content: newContent },
